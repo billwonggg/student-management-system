@@ -38,10 +38,9 @@ const StudentTable = ({ students }: studentTableProps) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {students.map((student) => {
-            console.log(student.dob);
+          {students.map((student, i) => {
             return (
-              <TableRow>
+              <TableRow key={i}>
                 <TableCell>{student.firstname}</TableCell>
                 <TableCell>{student.surname}</TableCell>
                 <TableCell>{new String(student.dob)}</TableCell>
