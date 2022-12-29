@@ -1,6 +1,9 @@
 import axios from "axios";
+
 import { useEffect, useState } from "react";
-import studentResponse from "./models";
+import StudentTable from "./Components/StudentTable";
+// import RegistrationForm from "./Components/RegistrationForm";
+import studentResponse from "./Models/student";
 
 const App = () => {
   const [students, setStudents] = useState<studentResponse[]>([]);
@@ -12,6 +15,7 @@ const App = () => {
       setStudents(response.data);
     } catch (err) {
       console.error(err);
+      return [];
     }
   };
 
@@ -21,13 +25,8 @@ const App = () => {
 
   return (
     <div>
-      {students.map((student, i) => {
-        return (
-          <p
-            key={i}
-          >{`${student.firstname} ${student.surname}, ${student.dob}, ${student.email}, ${student.age} years old, ${student.gender}, ${student.mobile}`}</p>
-        );
-      })}
+      {/* <RegistrationForm /> */}
+      <StudentTable students={students} />
     </div>
   );
 };
