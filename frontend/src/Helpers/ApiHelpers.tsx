@@ -33,8 +33,8 @@ export const deleteStudents = async (students: string) => {
   const endpoint = `/api/v1/student/${students}`;
   try {
     await axios.delete(endpoint);
-    sendNotif("Successfully deleted students", "success");
+    sendNotif("Successfully deleted items", "success");
   } catch (err) {
-    sendNotif("Error deleting students", "error");
+    sendNotif("Error deleting items", "error");
   }
 };
