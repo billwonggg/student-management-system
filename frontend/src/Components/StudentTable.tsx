@@ -1,6 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import RefreshIcon from "@mui/icons-material/Refresh";
-import { Box, Button, IconButton, Tooltip, Typography } from "@mui/material";
+import { Box, Button, Tooltip, Typography } from "@mui/material";
 import {
   DataGrid,
   GridCellEditCommitParams,
@@ -81,26 +81,31 @@ const StudentTable = ({ students, setStudents }: studentTableProps) => {
             Refresh
           </Button>
         </Tooltip>
-        {selected.length > 0 && (
-          <Tooltip
-            title={<Typography variant="subtitle2">Delete Selected Items</Typography>}
-            sx={{ float: "right" }}
-            arrow
+        <Tooltip
+          title={
+            selected.length > 0 ? (
+              <Typography variant="subtitle2">Delete Selected Items</Typography>
+            ) : (
+              ""
+            )
+          }
+          sx={{ float: "right" }}
+          arrow
+        >
+          <Button
+            onClick={async () => {
+              await deleteStudents(selected.join(","));
+              setSelected([]);
+              await getStudents(setStudents);
+            }}
+            startIcon={<DeleteIcon />}
+            variant="outlined"
+            color="error"
+            disabled={selected.length === 0}
           >
-            <Button
-              onClick={async () => {
-                await deleteStudents(selected.join(","));
-                setSelected([]);
-                await getStudents(setStudents);
-              }}
-              startIcon={<DeleteIcon />}
-              variant="outlined"
-              color="error"
-            >
-              Delete
-            </Button>
-          </Tooltip>
-        )}
+            Delete
+          </Button>
+        </Tooltip>
       </Box>
     </Box>
   );
