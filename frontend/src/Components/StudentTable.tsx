@@ -1,58 +1,71 @@
+import { Box } from "@mui/material";
 import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
-import React from "react";
+  DataGrid,
+  GridCallbackDetails,
+  GridCellEditCommitParams,
+  GridColDef,
+  GridValueGetterParams,
+  MuiBaseEvent,
+  MuiEvent,
+} from "@mui/x-data-grid";
+import axios from "axios";
+import { editStudents } from "../Helpers/ApiHelpers";
 import studentResponse from "../Models/student";
 
-interface Data {
-  firstname: string;
-  surname: string;
-  dob: Date;
-  gender: string;
-  email: string;
-  mobile: string;
-}
+const columns: GridColDef[] = [
+  { field: "id", headerName: "ID", width: 100 },
+  { field: "firstname", headerName: "First Name", width: 150 },
+  { field: "surname", headerName: "Surname", width: 150 },
+  { field: "dob", headerName: "Date of Birth", width: 150 },
+  {
+    field: "gender",
+    headerName: "Gender",
+    width: 120,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    width: 180,
+    editable: true,
+  },
+  {
+    field: "mobile",
+    headerName: "Mobile",
+    width: 150,
+    editable: true,
+  },
+];
 
 interface studentTableProps {
   students: studentResponse[];
 }
 
+const createRow = (row: studentResponse) => {
+  return {
+    id: row.id,
+    firstname: row.firstname,
+    surname: row.surname,
+    dob: row.dob,
+    email: row.email,
+    mobile: row.mobile,
+    gender: row.gender,
+  };
+};
+
 const StudentTable = ({ students }: studentTableProps) => {
+  const rows = students.map((student) => createRow(student));
+
   return (
-    <TableContainer component={Paper}>
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>First Name</TableCell>
-            <TableCell>Surname</TableCell>
-            <TableCell>Date of Birth</TableCell>
-            <TableCell>Gender</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Mobile</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {students.map((student, i) => {
-            return (
-              <TableRow key={i}>
-                <TableCell>{student.firstname}</TableCell>
-                <TableCell>{student.surname}</TableCell>
-                <TableCell>{new String(student.dob)}</TableCell>
-                <TableCell>{student.gender}</TableCell>
-                <TableCell>{student.email}</TableCell>
-                <TableCell>{student.mobile}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <Box sx={{ height: "500px", width: "80%" }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+        onCellEditCommit={(params: GridCellEditCommitParams) => editStudents(params)}
+      />
+    </Box>
   );
 };
 
