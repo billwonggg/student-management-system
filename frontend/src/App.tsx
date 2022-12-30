@@ -1,6 +1,4 @@
 import { Button, Typography } from "@mui/material";
-import axios from "axios";
-
 import { useEffect, useState } from "react";
 import StudentTable from "./Components/StudentTable";
 import { getStudents } from "./Helpers/ApiHelpers";

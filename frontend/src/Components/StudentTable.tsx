@@ -1,14 +1,5 @@
 import { Box } from "@mui/material";
-import {
-  DataGrid,
-  GridCallbackDetails,
-  GridCellEditCommitParams,
-  GridColDef,
-  GridValueGetterParams,
-  MuiBaseEvent,
-  MuiEvent,
-} from "@mui/x-data-grid";
-import axios from "axios";
+import { DataGrid, GridCellEditCommitParams, GridColDef } from "@mui/x-data-grid";
 import { editStudents } from "../Helpers/ApiHelpers";
 import studentResponse from "../Models/student";
 
