@@ -1,5 +1,6 @@
-import { DeleteOutline } from "@mui/icons-material";
-import { Alert, Box, Button, IconButton, Tooltip, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import RefreshIcon from "@mui/icons-material/Refresh";
+import { Box, Button, IconButton, Tooltip, Typography } from "@mui/material";
 import {
   DataGrid,
   GridCellEditCommitParams,
@@ -57,10 +58,6 @@ const StudentTable = ({ students, setStudents }: studentTableProps) => {
 
   return (
     <Box>
-      <Button variant="outlined" sx={{ mb: 3 }} onClick={() => getStudents(setStudents)}>
-        Refresh Data
-      </Button>
-
       <DataGrid
         rows={rows}
         columns={columns}
@@ -72,23 +69,39 @@ const StudentTable = ({ students, setStudents }: studentTableProps) => {
         onSelectionModelChange={(selectionModel: GridSelectionModel) => {
           setSelected(selectionModel as number[]);
         }}
+        sx={{ mb: 4 }}
       />
-      {selected.length > 0 && (
-        <Tooltip
-          title={<Typography variant="subtitle2">Delete Selected Items</Typography>}
-          sx={{ float: "right", mt: 1 }}
-        >
-          <IconButton
-            onClick={async () => {
-              await deleteStudents(selected.join(","));
-              setSelected([]);
-              await getStudents(setStudents);
-            }}
+      <Box>
+        <Tooltip title={<Typography variant="subtitle2">Refresh Table Data</Typography>}>
+          <Button
+            variant="outlined"
+            onClick={() => getStudents(setStudents, true)}
+            startIcon={<RefreshIcon />}
           >
-            <DeleteOutline color="error" />
-          </IconButton>
+            Refresh
+          </Button>
         </Tooltip>
-      )}
+        {selected.length > 0 && (
+          <Tooltip
+            title={<Typography variant="subtitle2">Delete Selected Items</Typography>}
+            sx={{ float: "right" }}
+            arrow
+          >
+            <Button
+              onClick={async () => {
+                await deleteStudents(selected.join(","));
+                setSelected([]);
+                await getStudents(setStudents);
+              }}
+              startIcon={<DeleteIcon />}
+              variant="outlined"
+              color="error"
+            >
+              Delete
+            </Button>
+          </Tooltip>
+        )}
+      </Box>
     </Box>
   );
 };
