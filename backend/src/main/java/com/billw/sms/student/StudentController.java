@@ -3,7 +3,9 @@ package com.billw.sms.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
+
 @RestController
 @RequestMapping(path = "api/v1/student")
 public class StudentController {
@@ -25,9 +27,11 @@ public class StudentController {
         studentService.addNewStudent(student);
     }
 
-    @DeleteMapping(path = "{studentId}")
-    public void deleteStudent(@PathVariable("studentId") Integer studentId) {
-        studentService.deleteStudent(studentId);
+    @DeleteMapping(path = "{studentIds}")
+    public void deleteStudent(@PathVariable("studentIds") String studentIds) {
+        int[] ids = Arrays.stream(studentIds.split(",")).mapToInt(Integer::parseInt).toArray();
+        for (int id : ids)
+            studentService.deleteStudent(id);
     }
 
     @PutMapping(path = "{studentId}")
