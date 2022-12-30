@@ -1,4 +1,4 @@
-import { Button, Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import StudentTable from "./Components/StudentTable";
 import { getStudents } from "./Helpers/ApiHelpers";
@@ -13,12 +13,14 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <Container maxWidth="xl" sx={{ p: 2 }}>
       {/* <RegistrationForm /> */}
-      <Typography>Students</Typography>
-      <Button onClick={() => getStudents(setStudents)}>Refresh</Button>
-      <StudentTable students={students} />
-    </div>
+      <Typography variant="h2" mb={2}>
+        Student Management System
+      </Typography>
+
+      <StudentTable students={students} setStudents={setStudents} />
+    </Container>
   );
 };
 export default App;
