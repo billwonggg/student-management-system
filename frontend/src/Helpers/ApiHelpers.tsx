@@ -17,5 +17,10 @@ export const getStudents = async (
 
 export const editStudents = async (params: GridCellEditCommitParams) => {
   const endpoint = `/api/v1/student/${params.id}?${params.field}=${params.value}`;
-  axios.put(endpoint);
+  await axios.put(endpoint);
+};
+
+export const deleteStudents = async (students: string) => {
+  const endpoint = `/api/v1/student/${students}`;
+  await axios.delete(endpoint);
 };
