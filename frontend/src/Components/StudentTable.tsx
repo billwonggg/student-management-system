@@ -24,7 +24,7 @@ const columns: GridColDef[] = [
   {
     field: "email",
     headerName: "Email",
-    width: 180,
+    width: 220,
     editable: true,
   },
   {
@@ -58,21 +58,8 @@ const StudentTable = ({ students, setStudents }: studentTableProps) => {
 
   return (
     <Box>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        autoHeight
-        onCellEditCommit={(params: GridCellEditCommitParams) => editStudents(params)}
-        onSelectionModelChange={(selectionModel: GridSelectionModel) => {
-          setSelected(selectionModel as number[]);
-        }}
-        sx={{ mb: 4 }}
-      />
       <Box>
-        <Tooltip title={<Typography variant="subtitle2">Refresh Table Data</Typography>}>
+        <Tooltip arrow title={<Typography variant="subtitle2">Refresh Table Data</Typography>}>
           <Button
             variant="outlined"
             onClick={() => getStudents(setStudents, true)}
@@ -107,6 +94,19 @@ const StudentTable = ({ students, setStudents }: studentTableProps) => {
           </Button>
         </Tooltip>
       </Box>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
+        checkboxSelection
+        autoHeight
+        onCellEditCommit={(params: GridCellEditCommitParams) => editStudents(params)}
+        onSelectionModelChange={(selectionModel: GridSelectionModel) => {
+          setSelected(selectionModel as number[]);
+        }}
+        sx={{ mt: 2, mb: 2 }}
+      />
     </Box>
   );
 };
