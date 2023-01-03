@@ -71,7 +71,7 @@ const StudentTable = ({ students, setStudents }: studentTableProps) => {
         <Tooltip
           title={
             selected.length > 0 ? (
-              <Typography variant="subtitle2">Delete Selected Items</Typography>
+              <Typography variant="subtitle2">Delete Selected Data</Typography>
             ) : (
               ""
             )
