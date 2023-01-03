@@ -19,6 +19,20 @@ export const getStudents = async (
   }
 };
 
+export const addStudent = async (payload: any) => {
+  const endpoint = "api/v1/student";
+  try {
+    await axios.post(endpoint, payload, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    sendNotif(`Successfully added student`, "success");
+  } catch (err: any) {
+    sendNotif(`Error adding student: ${err.response?.data?.message}`, "error");
+  }
+};
+
 export const editStudents = async (params: GridCellEditCommitParams) => {
   const endpoint = `/api/v1/student/${params.id}?${params.field}=${params.value}`;
   try {
@@ -33,8 +47,8 @@ export const deleteStudents = async (students: string) => {
   const endpoint = `/api/v1/student/${students}`;
   try {
     await axios.delete(endpoint);
-    sendNotif("Successfully deleted items", "success");
+    sendNotif("Successfully deleted data", "success");
   } catch (err) {
-    sendNotif("Error deleting items", "error");
+    sendNotif("Error deleting data", "error");
   }
 };
