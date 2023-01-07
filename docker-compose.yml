@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  db:
+    user: postgres
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_DB=students
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    container_name: db-container
+
+  backend:
+    build: backend
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/students
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    ports:
+      - "8080:8080"
+    container_name: server-container
+
+  client:
+    build: client
+    ports:
+      - "3000:3000"
+    container_name: client-container
+    links: 
+      - "backend"
