@@ -8,7 +8,7 @@ export const getStudents = async (
   setStudents: React.Dispatch<React.SetStateAction<studentResponse[]>>,
   showNotif: boolean = false
 ) => {
-  const endpoint = "/api/v1/student";
+  const endpoint = "http://127.0.0.1:8080/api/v1/student";
   try {
     const response = await axios.get<studentResponse[]>(endpoint);
     setStudents(response.data);
@@ -20,7 +20,7 @@ export const getStudents = async (
 };
 
 export const addStudent = async (payload: any) => {
-  const endpoint = "api/v1/student";
+  const endpoint = "http://127.0.0.1:8080/api/v1/student";
   try {
     await axios.post(endpoint, payload, {
       headers: {
@@ -34,7 +34,7 @@ export const addStudent = async (payload: any) => {
 };
 
 export const editStudents = async (params: GridCellEditCommitParams) => {
-  const endpoint = `/api/v1/student/${params.id}?${params.field}=${params.value}`;
+  const endpoint = `http://127.0.0.1:8080/api/v1/student/${params.id}?${params.field}=${params.value}`;
   try {
     await axios.put(endpoint);
     sendNotif(`Successfully updated ${params.field}`, "success");
@@ -44,7 +44,7 @@ export const editStudents = async (params: GridCellEditCommitParams) => {
 };
 
 export const deleteStudents = async (students: string) => {
-  const endpoint = `/api/v1/student/${students}`;
+  const endpoint = `http://127.0.0.1:8080/api/v1/student/${students}`;
   try {
     await axios.delete(endpoint);
     sendNotif("Successfully deleted data", "success");
