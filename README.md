@@ -12,10 +12,10 @@ The project is about a student management system to store basic information abou
 
 ## Desktop Preview
 
-<img src="frontend/images/main.png">
+<img src="client/images/main.png">
 
 <br/>
 
-<img src="frontend/images/register.png">
+<img src="client/images/register.png">
 
 _Note: The data used is purely fictitious for the purposes of the demonstration_
