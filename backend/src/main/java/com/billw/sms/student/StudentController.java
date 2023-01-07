@@ -18,16 +18,19 @@ public class StudentController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "*")
     public List<Student> getStudents() {
         return this.studentService.getStudents();
     }
 
     @PostMapping
+    @CrossOrigin(origins = "*")
     public void registerNewStudent(@RequestBody Student student) {
         studentService.addNewStudent(student);
     }
 
     @DeleteMapping(path = "{studentIds}")
+    @CrossOrigin(origins = "*")
     public void deleteStudent(@PathVariable("studentIds") String studentIds) {
         int[] ids = Arrays.stream(studentIds.split(",")).mapToInt(Integer::parseInt).toArray();
         for (int id : ids)
@@ -35,6 +38,7 @@ public class StudentController {
     }
 
     @PutMapping(path = "{studentId}")
+    @CrossOrigin(origins = "*")
     public void updateStudent(@PathVariable("studentId") Integer studentId,
                               @RequestParam(required = false) String email,
                               @RequestParam(required = false) String mobile) {
