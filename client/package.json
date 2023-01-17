@@ -1,13 +1,13 @@
 {
   "name": "sms-frontend",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.4",
-    "@mui/x-data-grid": "^5.17.18",
+    "@mui/x-data-grid": "^5.17.19",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
@@ -21,7 +21,7 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "react-toastify": "^9.1.1",
-    "web-vitals": "^3.1.0"
+    "web-vitals": "^3.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
