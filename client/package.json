@@ -1,12 +1,12 @@
 {
   "name": "sms-frontend",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.9",
-    "@mui/material": "^5.11.9",
+    "@mui/material": "^5.11.10",
     "@mui/x-data-grid": "^5.17.24",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
